@@ -51,5 +51,5 @@
 - Změna major verze. Zahození předchozích nefunkčních částí
 ---
 
-** Build **
+**Build**
 bin\Ahk2Exe.exe /in Master\master.ahk /compress 1
