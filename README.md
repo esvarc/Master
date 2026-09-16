@@ -1,7 +1,7 @@
 ## Ovládání 
 |||
 | --- | --- |
-|LEFT-WIN + A|Blokování screensaveru (toggle) amti-AFK|
+|LEFT-WIN + A|Blokování screensaveru (toggle) anti-AFK|
 | &nbsp; | &nbsp; |
 |LEFT-WIN + F10|Uložení pozice okna (toggle)|
 | &nbsp; | &nbsp; |
