@@ -5,7 +5,7 @@ $_taskXml = @"
   <Date>$((Get-Date).ToString('yyyy-MM-dd'))T00:01:00</Date>
   <Author>Run Santa</Author>
   <Description>Master AHK</Description>
-  <Version>1.0.0</Version>
+  <Version>2.1.9</Version>
  </RegistrationInfo>
  <Triggers />
  <Principals>
