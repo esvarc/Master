@@ -50,3 +50,6 @@
 - Držení kombinace kláves než dojde ke stisknutí libovolné klávesy  
 - Změna major verze. Zahození předchozích nefunkčních částí
 ---
+
+** Build **
+bin\Ahk2Exe.exe /in Master\master.ahk /compress 1
