@@ -1,4 +1,4 @@
-class winMax { ; načtení seznamu oken z %LOCALAPPDATA%\maximized-windows.cfg, které se mají roztáhnout na pracovní plochu bez rámečků
+﻿class winMax { ; načtení seznamu oken z %LOCALAPPDATA%\maximized-windows.cfg, které se mají roztáhnout na pracovní plochu bez rámečků
   static WS_CAPTION  := 0x00C00000, WS_SIZEBOX  := 0x00040000, WindowStyle := winMax.WS_CAPTION | winMax.WS_SIZEBOX
   lookup := Array()
   congfigFile := ""

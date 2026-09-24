@@ -7,12 +7,16 @@
 - Blokování spořiče obrazovky a přechodu do režimu spánku pokud je aktivní parametr `afk` v příkazové řádce nebo použita hot‑key není potřeba již reload  
 
 **Autor:** Eduard Švarc  
-**Datum:** 2. 9. 2026  
-**Verze:** 2.1.9  
+**Datum:** 24.9.2026  
+**Verze:** 2.2.1  
 
 ---
 
 ## Revize
+
+### 2.2.1 (2026‑09‑24)
+- Přechod na kódování UTF-8 BOM
+- Nejsem schopen odstartovat Thunderbird ze PS1 skriptu a dostat okno vyzávající k zadání hesla na popředí. O předání do popředí se musí postarat Master.
 
 ### 2.1.9 (2026‑09‑02)
 - Opraveno chybné cachování rozměrů desktopu AHK. SYSGET vrací souřadnice levého horního rohu a šířku s výškou desktopu, stejně musím přepočítat DLL které je v absolutních souřadnicích.
@@ -25,7 +29,7 @@
 - Bump verze kvůli pokusu o zabránění AFK stavu pro Teams, ale pokus se nezdařil
 
 ### 2.1.6 (2026‑08‑11)
-- Řešení jak ukončit master když je spuštěn jako elevated, potřebné pro aktualizace EXE verze
+- Řešení jak ukončit master když je spuštěn jako elevated, potřebné pro aktualizace EXE verze. Testuje existenci souboru a skript se sám ukončí.
 
 ### 2.1.5 (2026‑08‑10)
 - Zavedl jsem třídu s konstantami, nemusím je pak deklarovat jako global  

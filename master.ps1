@@ -1,5 +1,5 @@
-$_taskXml = @"
-<?xml version="1.0" encoding="UTF-16"?>
+﻿$_taskXml = @"
+<?xml version="1.0" encoding="UTF-8"?>
 <Task version="1.3" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
  <RegistrationInfo>
   <Date>$((Get-Date).ToString('yyyy-MM-dd'))T00:01:00</Date>
