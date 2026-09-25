@@ -1,3 +1,19 @@
+## Ovládání 
+|||
+| --- | --- |
+|LEFT-WIN + A|Blokování screensaveru (toggle) anti-AFK|
+| &nbsp; | &nbsp; |
+|LEFT-WIN + F10|Uložení pozice okna (toggle)|
+| &nbsp; | &nbsp; |
+|LEFT-WIN + F11|Debug (toggle)|
+|LEFT-WIN + F12|Znovunačtění konfigurace|
+|LEFT-WIN + END|Ukončení programu/skriptu|
+| &nbsp; | &nbsp; |
+|LEFT-WIN + F5|Mute|
+LEFT-WIN + F6|Předchozí skladba|
+LEFT-WIN + F7|Pauza/Play|
+LEFT-WIN + F8|Následující skladba|
+
 ## Popis
 - Přehrávání médií pro klávesnice co nemají funkční tlačítka play, stop, next, previous  
 - Držení kombinace kláves pro hry  
@@ -54,3 +70,6 @@
 - Držení kombinace kláves než dojde ke stisknutí libovolné klávesy  
 - Změna major verze. Zahození předchozích nefunkčních částí
 ---
+
+**Build**
+bin\Ahk2Exe.exe /in Master\master.ahk /compress 1
