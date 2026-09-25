@@ -14,9 +14,9 @@ timer_runner() { ; hlavní timer, který spouští jednotlivé časovače
   DetectHiddenWindows(true)
   timer_restore(Const.N_TIME_500MS)
   timer_debug(Const.N_TIME_SECOND)
+  timer_mozilla(Const.N_TIME_SECOND)
   timer_agent(5 * Const.N_TIME_SECOND)
   timer_client(5 * Const.N_TIME_SECOND)
-  timer_mozilla(5 * Const.N_TIME_SECOND)
   if FileExist(sStop) {
     try {
       FileDelete(sStop)
