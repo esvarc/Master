@@ -7,10 +7,13 @@ Popis:
  • Ukončení Ganji agenta který je součástí Enlisted, Nenechám se špiónovat.
  • Hlídání pozice a velikosti oken, zadaných v konfiguračním souboru %LOCALAPPDATA%\saved-windows.cfg
  • Blokování spořiče obrazovky a přechodu do režimu spánku, pokud je aktivní parametr afk v příkazové řádce nebo použita hot-key není potřeba již reload
-Datum:  24.9.2026
-Verze:  2.2.1
+Datum:  30.9.2026
+Verze:  2.2.2
 Revize:
 
+2.2.2 2026.09.30
+ - Aktualizace hotkey pro přechod mezi okny OGame
+ - Všechna okna OGame dostanou veliksot jako % velikosti pracovní plochy
 2.2.1 2026.09.24
  - Změna kódování zdrojáků na UTF-8 s BOM
  - Přidána kontrola dialogu Mozilla Thunderbird pro zadání hesla.

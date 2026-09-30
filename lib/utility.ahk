@@ -144,12 +144,74 @@ set_window(x, y, w, h, hwnd) { ; nastavení pozice a velikosti okna
   }
   return true
 }
+set_windowsize(hwnd, widthPercent, heightPercent) { ; nastavení velikosti okna v procentech pracovní plochy
+  static WS_SIZEBOX := 0x00040000
+  try {
+    if (!IsNumber(widthPercent) || !IsNumber(heightPercent) || widthPercent < 20 || widthPercent > 90 || heightPercent < 20 || heightPercent > 90)
+      return false
+    if (WinGetMinMax(hwnd) == -1 || !(WinGetStyle(hwnd) & WS_SIZEBOX))
+      return false
+    if (WinGetMinMax(hwnd) == 1)
+      WinRestore(hwnd)
+    WinGetPos(&x, &y, &currentWidth, &currentHeight, hwnd)
+    monitorIndex := 1, maxOverlap := -1
+    Loop MonitorGetCount() {
+      MonitorGet(A_Index, &monitorLeft, &monitorTop, &monitorRight, &monitorBottom)
+      overlapWidth := Max(0, Min(x + currentWidth, monitorRight) - Max(x, monitorLeft))
+      overlapHeight := Max(0, Min(y + currentHeight, monitorBottom) - Max(y, monitorTop))
+      overlap := overlapWidth * overlapHeight
+      if (overlap > maxOverlap)
+        monitorIndex := A_Index, maxOverlap := overlap
+    }
+    MonitorGetWorkArea(monitorIndex, &Left, &Top, &Right, &Bottom)
+    width := Floor((Right - Left) * widthPercent / 100)
+    height := Floor((Bottom - Top) * heightPercent / 100)
+    if (currentWidth == width && currentHeight == height)
+      return true
+    return set_window(x, y, width, height, hwnd)
+  } catch Error as e {
+    log_error(A_ThisFunc,e)
+    return false
+  }
+}
+ogame_resize() {
+  for hwnd in WinGetList("\w\sOGame")
+    set_windowsize(hwnd, 40, 62)
+}
 ; ladicí dump bude vždy na konci tohoto skriptu
 log_dump() { ; ladění
   log_add("Start",true)
-  log_add("handle := WinExist(Const.S_MOZILLA_DIALOG) " WinExist(Const.S_MOZILLA_DIALOG),true)
-  log_add("WinActive(handle) " WinActive(WinExist(Const.S_MOZILLA_DIALOG)),true)
-  ; log_add("WinActivate(handle) " WinActivate(WinExist(Const.S_MOZILLA_DIALOG)),true)
-  log_add("WinActivateBottom(handle) " WinActivateBottom(WinExist(Const.S_MOZILLA_DIALOG)),true)
+  aWindows := WinGetList("\w\sOGame")
+  log_add("aWindows.Count " aWindows.Length, true)
   log_add("End",true)
+}
+ogame_cycle(forward:=true) {
+  static index := 0
+  static aList := []
+  static lastHandle := 0
+  check := WinGetList("\w\sOGame")
+  if (check.Length != aList.Length) {
+    aList := check
+    index := 0
+  }
+  if (aList.Length) {
+    if (index < 1 || index > aList.Length)
+      index := forward ? 1 : aList.Length
+    else if (forward)
+      index := (index >= aList.Length) ? 1 : index + 1
+    else
+      index := (index <= 1) ? aList.Length : index - 1
+    hwnd := aList[index]
+    try {
+      if WinExist("ahk_id " hwnd) {
+        if (lastHandle && lastHandle != hwnd && WinExist("ahk_id " lastHandle))
+          WinMinimize(lastHandle)
+        if (WinGetMinMax(hwnd) == -1)
+          WinRestore(hwnd)
+        lastHandle := hwnd
+      }
+    } catch Error as e {
+      log_error(A_ThisFunc,e)
+    }
+  }
 }

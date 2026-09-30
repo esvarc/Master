@@ -5,7 +5,7 @@ class Const {
   static S_FILE_ENCODING := "UTF-16"
   static S_LOG_BASE_DIR := EnvGet("TEMP")
   static S_LOG_STAMP := "yyyyMMdd HH:mm:ss"
-  static S_VERSION := "2.2.1", S_PROGRAM_NAME := "Master"
+  static S_VERSION := "2.2.2", S_PROGRAM_NAME := "Master"
 ;@Ahk2Exe-Let verze=%A_PriorLine~U)^(.+"){1}(.+)".*$~$2%
 ;@Ahk2Exe-Let name=%A_PriorLine~U)^(.+"){3}(.+)".*$~$2%
   static S_COMPANY := "Trantor", S_COPYRIGHT := "GPL 2026"
@@ -68,6 +68,9 @@ return
 ; aplikačně závislé klávesy
 #HotIf WinActive("ahk_exe Blossom The Seed Of Life.exe")
   +LButton:: hold_keys(true, "LButton")
+#HotIf  WinExist("\w\sOGame")
+ <#PgDn:: ogame_cycle(true)
+ <#PgUp:: ogame_cycle(false)
 ; obecné klávesy
 #HotIf
   ^+#a::  afk_toggle() ; přepnutí AFK režimu
