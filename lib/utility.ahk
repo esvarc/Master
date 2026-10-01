@@ -175,13 +175,13 @@ set_windowsize(hwnd, widthPercent, heightPercent) { ; nastavení velikosti okna 
   }
 }
 ogame_resize() {
-  for hwnd in WinGetList("\w\sOGame")
-    set_windowsize(hwnd, 40, 62)
+  for hwnd in WinGetList(Const.S_OGAME)
+    set_windowsize(hwnd, Const.N_OGAME_WIDTH, Const.N_OGAME_HEIGHT)
 }
 ; ladicí dump bude vždy na konci tohoto skriptu
 log_dump() { ; ladění
   log_add("Start",true)
-  aWindows := WinGetList("\w\sOGame")
+  aWindows := WinGetList(Const.S_OGAME)
   log_add("aWindows.Count " aWindows.Length, true)
   log_add("End",true)
 }
@@ -189,7 +189,7 @@ ogame_cycle(forward:=true) {
   static index := 0
   static aList := []
   static lastHandle := 0
-  check := WinGetList("\w\sOGame")
+  check := WinGetList(Const.S_OGAME)
   if (check.Length != aList.Length) {
     aList := check
     index := 0
