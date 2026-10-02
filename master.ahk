@@ -5,7 +5,7 @@ class Const {
   static S_FILE_ENCODING := "UTF-16"
   static S_LOG_BASE_DIR := EnvGet("TEMP")
   static S_LOG_STAMP := "yyyyMMdd HH:mm:ss"
-  static S_VERSION := "2.2.2.1", S_PROGRAM_NAME := "Master"
+  static S_VERSION := "2.2.3", S_PROGRAM_NAME := "Master"
 ;@Ahk2Exe-Let verze=%A_PriorLine~U)^(.+"){1}(.+)".*$~$2%
 ;@Ahk2Exe-Let name=%A_PriorLine~U)^(.+"){3}(.+)".*$~$2%
   static S_COMPANY := "Trantor", S_COPYRIGHT := "GPL 2026"
@@ -25,8 +25,8 @@ class Const {
   static S_GJ_AGENT := "ahk_exe i)gjagent.exe"
   static S_MOZILLA_DIALOG := "Password Required - Mozilla Thunderbird"
   static S_OGAME := "^\w+\sOGame.*(Firefox|Edge)"
-  static N_OGAME_WIDTH := 40
-  static N_OGAME_HEIGHT := 62
+  static N_OGAME_WIDTH := 60
+  static N_OGAME_HEIGHT := 80
 }
 ; Sekce pro kompilaci
 ;@Ahk2Exe-Base ..\AutoHotkey64.exe
@@ -71,9 +71,9 @@ return
 ; aplikačně závislé klávesy
 #HotIf WinActive("ahk_exe Blossom The Seed Of Life.exe")
   +LButton:: hold_keys(true, "LButton")
-#HotIf  WinExist("\w\sOGame")
- <#PgDn:: ogame_cycle(true)
- <#PgUp:: ogame_cycle(false)
+#HotIf  WinActive(Const.S_OGAME)
+ <^PgDn:: ogame_cycle(true)
+ <^PgUp:: ogame_cycle(false)
 ; obecné klávesy
 #HotIf
   ^+#a::  afk_toggle() ; přepnutí AFK režimu

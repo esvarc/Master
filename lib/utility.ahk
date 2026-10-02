@@ -163,12 +163,15 @@ set_windowsize(hwnd, widthPercent, heightPercent) { ; nastavení velikosti okna 
       if (overlap > maxOverlap)
         monitorIndex := A_Index, maxOverlap := overlap
     }
+    MonitorGet(monitorIndex, &monitorLeft, &monitorTop, &monitorRight, &monitorBottom)
     MonitorGetWorkArea(monitorIndex, &Left, &Top, &Right, &Bottom)
-    width := Floor((Right - Left) * widthPercent / 100)
-    height := Floor((Bottom - Top) * heightPercent / 100)
-    if (currentWidth == width && currentHeight == height)
+    width := Floor(Abs(Right - Left) * widthPercent / 100)
+    height := Floor(Abs(Bottom - Top) * heightPercent / 100)
+    targetX := monitorLeft + 100
+    targetY := monitorTop + 100
+    if (currentWidth == width && currentHeight == height && x == targetX && y == targetY)
       return true
-    return set_window(x, y, width, height, hwnd)
+    return set_window(targetX, targetY, width, height, hwnd)
   } catch Error as e {
     log_error(A_ThisFunc,e)
     return false
@@ -203,11 +206,10 @@ ogame_cycle(forward:=true) {
       index := (index <= 1) ? aList.Length : index - 1
     hwnd := aList[index]
     try {
-      if WinExist("ahk_id " hwnd) {
-        if (lastHandle && lastHandle != hwnd && WinExist("ahk_id " lastHandle))
+      if WinExist(hwnd) {
+        if (lastHandle && lastHandle != hwnd && WinExist(lastHandle))
           WinMinimize(lastHandle)
-        if (WinGetMinMax(hwnd) == -1)
-          WinRestore(hwnd)
+        WinActivate(hwnd)
         lastHandle := hwnd
       }
     } catch Error as e {
